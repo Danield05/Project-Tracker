@@ -18,7 +18,7 @@
   <div class="mb-3 ">
     <a href="/register">Create Account</a> 
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" class="btn btn-primary">Sign in</button>
 </form>
 
 @endsection
