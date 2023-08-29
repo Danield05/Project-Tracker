@@ -16,5 +16,6 @@ class Expenses extends Model
         'date',
         'description',
         'amount',
+        'status',
     ];
 }

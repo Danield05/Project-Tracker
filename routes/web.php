@@ -44,3 +44,5 @@ Route::get('/expenses/{id}', [ExpensesController::class,'edit']);
 
 Route::put('/expenses/{id}', [ExpensesController::class,'update']);
 
+Route::put('/expenses/{id}/status', [ExpensesController::class, 'updateStatus']); // Ruta para actualizar el estado
+

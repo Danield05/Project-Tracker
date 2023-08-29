@@ -6,7 +6,7 @@
     <h1>Home</h1>
 
     @auth 
-        <p>Bienvenido {{auth()->user()->name ?? auth()->user()->username }}, estas autenticado a la pagina</p>
+        <p>Welcome {{auth()->user()->name ?? auth()->user()->username }}, you are authenticated to our Expenses Tracker App.</p>
         <p>
             <a href="/logout">logout</a>
             

@@ -23,6 +23,7 @@ class ExpensesController extends Controller
         $expense->date = $request->input('date');
         $expense->description = $request->input('description');
         $expense->amount = $request->input('amount');
+        $expense->status = 'Activo'; 
         $expense->save();
     
         return redirect('/expenses/create')->with('success', 'Expense registered successfully.');
@@ -30,8 +31,10 @@ class ExpensesController extends Controller
     
    public function show(){
     $username = auth()->user()->name ?? auth()->user()->username; // Obtener el username de usuario actual
-    $expenses = Expenses::where('username', $username)->get(); // Filtrar por el nombre de usuario
-    //return para vistas en blade
+    $expenses = Expenses::where('username', $username)
+                        ->where('status', 'Activo') // Filtrar por el estado "Activo"
+                        ->get(); // Filtrar por el nombre de usuario
+
     return view('home.tracker.view-expenses',['expenses' => $expenses]);
    }
 
@@ -50,6 +53,15 @@ public function update(Request $request, string $id)
     return redirect('expenses/view')->with('success', 'Expense updated successfully.');;
    
 }
-    
+
+public function updateStatus($id)
+{
+    $expense = Expenses::findOrFail($id);
+    $expense->status = 'Inactivo'; // Cambiar el estado a "Inactivo"
+    $expense->save();
+
+    return redirect('/expenses/view')->with('success', 'Expense marked as Inactive.');
+}
+
 
 }
