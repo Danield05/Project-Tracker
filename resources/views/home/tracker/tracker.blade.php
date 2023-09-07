@@ -37,7 +37,7 @@
   <div class="mb-3 row">
     <label for="inputAmount" class="col-sm-2 col-form-label">Amount($)</label>
     <div class="col-sm-10">
-      <input type="number" class="form-control" id="amount" name="amount" step="0.01" required>
+      <input type="number" class="form-control" id="amount" name="amount" step="0.01" required min="0.01">
     </div>
   </div>
   <div class="mb-3 row">

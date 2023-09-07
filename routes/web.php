@@ -36,6 +36,16 @@ Route::get('/logout', [LogoutController::class, 'logout']);
 
 Route::get('/expenses/create', [ExpensesController::class, 'index']);
 
+Route::get('/budget', [ExpensesController::class, 'showBudget']); //Ruta para el form insertar Budget
+
+Route::get('/analytics', [ExpensesController::class, 'showAnalytics']); //Ruta para analytics modulo
+
+Route::post('/budget', [ExpensesController::class, 'storeBudget']); // Form insert-budget
+
+Route::get('/budget/{id}', [ExpensesController::class,'editBudget']); //edit Budget
+
+Route::put('/budget/{id}', [ExpensesController::class,'updateBudget']); // update Budget
+
 Route::post('/expenses/create', [ExpensesController::class, 'store']);
 
 Route::get('/expenses/view', [ExpensesController::class, 'show']);
@@ -44,5 +54,8 @@ Route::get('/expenses/{id}', [ExpensesController::class,'edit']);
 
 Route::put('/expenses/{id}', [ExpensesController::class,'update']);
 
-Route::put('/expenses/{id}/status', [ExpensesController::class, 'updateStatus']); // Ruta para actualizar el estado
+Route::put('/expenses/{id}/status', [ExpensesController::class, 'updateStatus']); // Ruta para actualizar el estado Activo/Inactivo
+
+
+
 

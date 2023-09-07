@@ -18,11 +18,12 @@
           </a>
           <ul class="dropdown-menu">
           @auth
+            <li><a class="dropdown-item" href="/budget">Insert Montly Budget</a></li>
             <li><a class="dropdown-item" href="/expenses/create">Register Expense</a></li>
-            
             <li><a class="dropdown-item" href="/expenses/view">View my expenses</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Reports</a></li>
+            <li><a class="dropdown-item" href="/analytics">Analytics</a></li>
             @endauth
           </ul>
         </li>

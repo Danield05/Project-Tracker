@@ -7,7 +7,7 @@
 
 @section('content')
 
-<div class="card">
+<div class="card my-2">
     <div class="card-body">
         <table id="expenses" class="table table-striped">
             <thead>
@@ -49,12 +49,37 @@
     </div>
 </div>
 
-<div class="mb-3">
-    <strong>Total records: {{ $num }}</strong> <!-- Mostrar el total después de la tabla -->
+<div class="card my-2 card-body">
+    <div class="mb-3 alert alert-light">
+        <strong>Total records: {{ $num }}</strong> <!-- Mostrar el total después de la tabla -->
+    </div>
+
+    <div class="mb-3 alert alert-light">
+        <strong>Total expenses: ${{ $total }}</strong> <!-- Mostrar el total después de la tabla -->
+    </div>
+
+    <div class="mb-3 alert alert-light">
+        @if ($budget)
+            <strong>Budget for this month: ${{ $budget->budget }}</strong>
+        @else
+            <strong>Monthly budget has not been assigned yet <a href="{{ url('/budget') }}">click here</a> to enter budget.</strong>
+        @endif
+    </div>
+
+    <div class="mb-3 alert alert-light">
+        <strong>Total expenses this month: ${{ $total_expenses_current_month }}</strong>
+    </div>
+
+    <div class="mb-3 alert @if ($budget && $total_expenses_current_month > $budget->budget) alert-danger @elseif (!$budget) alert-warning @else alert-success @endif">
+    @if ($budget && $total_expenses_current_month > $budget->budget)
+        <strong>Monthly budget exceeded!</strong>
+    @elseif (!$budget)
+        <strong>Monthly budget has not been assigned yet.</strong>
+    @else
+        <strong>Monthly budget not exceeded.</strong>
+    @endif
 </div>
 
-<div class="mb-3">
-    <strong>Total: ${{ $total }}</strong> <!-- Mostrar el total después de la tabla -->
 </div>
 
 <a href="{{ url('/expenses/create') }}" class="btn btn-primary">Add more expenses</a>
