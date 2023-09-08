@@ -184,6 +184,19 @@ public function showAnalytics()
         ->where('status', 'Activo')
         ->whereRaw('MONTH(date) = ? AND YEAR(date) = ?', [$mesAnterior, $anoAnterior])
         ->get();
+
+
+     $expenses_trend = Expenses::where('username', $username)
+        ->where('status', 'Activo')
+        ->selectRaw('DATE_FORMAT(date, "%Y-%m-%d") as date, SUM(amount) as total')
+        ->groupBy('date')
+        ->get();
+
+     // Extract labels and values from expenses_trend
+     $labels2 = $expenses_trend->pluck('date');
+     $values2 = $expenses_trend->pluck('total');
+
+
     // Obtener las categorías y contar la cantidad de gastos por categoría
     $categories = $expenses_current_month->groupBy('type')->map->sum('amount');
     $categories1 = $expenses_previous_month->groupBy('type')->map->sum('amount');
@@ -218,14 +231,16 @@ public function showAnalytics()
         'values' => $values,
         'labels1' => $labels1,
         'values1' => $values1,
+        'labels2' => $labels2,
+        'values2' => $values2,
         'budget' => $budget,
         'budget1' => $budget1,
         'totalExpensesValue' => $totalExpensesValue,
         'totalExpensesValue1' => $totalExpensesValue1,
     ]);
 }
-
-
-
+ 
+   
+   
 
 }
