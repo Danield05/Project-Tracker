@@ -32,6 +32,15 @@
     </div>
   </div>
 
+  <div class="col-md-6">
+    <div class="mb-5">
+      <canvas id="lineChart"></canvas>
+    </div>
+  </div>
+
+  
+</div>
+
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -155,12 +164,6 @@
      });
 
 
-
-
-
-
-
-
      const pieChartCtx = document.getElementById('pieChart').getContext('2d');
 
      
@@ -169,7 +172,7 @@
      new Chart(pieChartCtx, {
          type: 'doughnut',
          data: {
-             labels: ['Budget for this Month', 'Total Expenses this Month'],
+             labels: ['Budget($) for this Month', 'Total Expenses($) this Month'],
              datasets: [{
                  data: [budgetValue, {{ $totalExpensesValue }}], // Asegúrate de obtener el valor total de gastos desde PHP
                  backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)']
@@ -198,7 +201,7 @@ const budgetValue1 = {{ $budget1->budget ?? 0 }}; // Puedes establecer un valor 
 new Chart(pieChartCtx1, {
     type: 'doughnut',
     data: {
-        labels: ['Budget for previous Month', 'Total Expenses previous Month'],
+        labels: ['Budget($) for previous Month', 'Total Expenses($) previous Month'],
         datasets: [{
             data: [budgetValue1, {{ $totalExpensesValue1 }}], // Asegúrate de obtener e
             backgroundColor: ['rgba(75, 192, 192, 0.5)', 'rgba(255, 99, 132, 0.5)']
@@ -216,7 +219,47 @@ new Chart(pieChartCtx1, {
     }
 });
 
+//----------------
 
+
+const ctx2 = document.getElementById('lineChart').getContext('2d');
+
+// Sample data
+const data = {
+    labels: @json($labels2), // Use the labels from your controller
+    datasets: [{
+        label: 'Total Expenses($) daily Trend',
+        data: @json($values2), // Use the values from your controller
+        fill: false,
+        borderColor: 'rgba(255, 99, 132, 3)',
+        borderWidth: 2,
+        pointRadius: 5,
+        pointBackgroundColor: 'rgba(255, 99, 132, 0.5)',
+        pointBorderColor: 'rgba(255, 99, 132, 0.5)',
+        pointHoverRadius: 7,
+        pointHoverBackgroundColor: 'rgba(255, 99, 132, 0.5)',
+        pointHoverBorderColor: 'rgba(255, 99, 132, 0.5)',
+    }]
+};
+
+// Chart configuration
+const config = {
+    type: 'line',
+    data: data,
+    options: {
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+};
+
+// Create the line chart
+new Chart(ctx2, config);
+
+
+//---------------------------------
 
 
 </script>
