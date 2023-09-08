@@ -22,7 +22,7 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::get('/register', [RegisterController::class, 'show']);
+Route::get('/register', [RegisterController::class, 'show']);;
     
 Route::post('/register', [RegisterController::class, 'register']);
 

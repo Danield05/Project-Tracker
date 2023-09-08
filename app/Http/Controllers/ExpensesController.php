@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Notifications\ExpenseAddedNotification;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Expenses;
 use App\Models\Budget; 
+
+
 
 class ExpensesController extends Controller
 {
@@ -24,10 +28,17 @@ class ExpensesController extends Controller
         $expense->date = $request->input('date');
         $expense->description = $request->input('description');
         $expense->amount = $request->input('amount');
-        $expense->status = 'Activo'; 
+        $expense->status = 'Activo';
+        
         $expense->save();
-    
-        return redirect('/expenses/create')->with('success', 'Expense registered successfully.');
+        // Relaciona el gasto con el usuario que lo creó
+        $expense->user()->associate(auth()->user()); // Asume que el usuario está autenticado
+
+        //Notificar al usuario que se ha agregado un nuevo gasto
+        $expense->user->notify(new ExpenseAddedNotification($expense));
+        
+
+         return redirect('/expenses/create')->with('success', 'Expense registered successfully.');
     }
     
     public function show(){
