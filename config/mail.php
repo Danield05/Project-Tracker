@@ -39,8 +39,8 @@ return [
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME', 'joseaquino971@gmail.com'),
-            'password' => env('MAIL_PASSWORD', 'eobahttosksvuobi'),
+            'username' => env('MAIL_USERNAME', 'Your acount'),//Example hola@gmail.com
+            'password' => env('MAIL_PASSWORD', 'Your password'),//Example asjaosjwoa
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],

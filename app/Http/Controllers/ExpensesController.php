@@ -7,9 +7,9 @@ use App\Notifications\ExpenseAddedNotification;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Expenses;
-use App\Models\Budget; 
-
-
+use App\Models\Budget;
+use App\Notifications\ExpenseDeletedNotification;
+use App\Notifications\ExpenseUpdatedNotification;
 
 class ExpensesController extends Controller
 {
@@ -87,17 +87,26 @@ class ExpensesController extends Controller
 public function update(Request $request, string $id)
 {
    
+    // Realiza la actualización del gasto
     $expense = Expenses::findOrFail($id);
     $expense->update($request->all());
-    return redirect('expenses/view')->with('success', 'Expense updated successfully.');;
-   
+
+      $expense->user()->associate(auth()->user()); // Asume que el usuario está autenticado
+    // Envía la notificación de actualización
+    $expense->user->notify(new ExpenseUpdatedNotification($expense));
+
+    return redirect('/expenses/view')->with('success', 'Expense updated successfully.');
 }
 
 public function updateStatus($id) //funcion para "eliminar" un expense
 {
-    $expense = Expenses::findOrFail($id);
+    $expense = Expenses::findOrFail($id); 
     $expense->status = 'Inactivo'; // Cambiar el estado a "Inactivo"
     $expense->save();
+   
+    $expense->user()->associate(auth()->user()); // Asume que el usuario está autenticado
+     // Enviar una notificación al usuario
+     $expense->user->notify(new ExpenseDeletedNotification($expense));
 
     return redirect('/expenses/view')->with('success', 'Expense marked as Inactive.');
 }
