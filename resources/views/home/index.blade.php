@@ -13,6 +13,8 @@
         @guest
             <p>To view the content, please <a href="/login">log in</a>.</p>
         @endguest
+        
+        
     </div>
 </div>
 @endsection

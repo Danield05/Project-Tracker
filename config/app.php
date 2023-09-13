@@ -15,7 +15,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'ExpensesTracker'),
+    'name' => env('APP_NAME', 'Expense Tracker'),
 
     /*
     |--------------------------------------------------------------------------

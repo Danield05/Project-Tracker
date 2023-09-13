@@ -41,9 +41,9 @@ class WelcomeNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('Welcome to Expenses Tracker')
-                    ->line('Thank your for joining us')
-                    ->line('You can now start adding your expenses');
+            ->line('Welcome to Expenses Tracker')
+            ->line('Thank you for joining us')
+            ->line('You can now start adding your expenses');
     }
 
     /**

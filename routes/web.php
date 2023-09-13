@@ -6,6 +6,8 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\ReportController;
+
 
 
 /*
@@ -54,7 +56,12 @@ Route::get('/expenses/{id}', [ExpensesController::class,'edit']);
 
 Route::put('/expenses/{id}', [ExpensesController::class,'update']);
 
-Route::put('/expenses/{id}/status', [ExpensesController::class, 'updateStatus']); // Ruta para actualizar el estado Activo/Inactivo
+Route::put('/expenses/{id}/status', [ExpensesController::class,'updateStatus']); // Ruta para actualizar el estado Activo/Inactivo
+
+Route::get('/reports', [ReportController::class, 'show']);
+
+
+
 
 
 

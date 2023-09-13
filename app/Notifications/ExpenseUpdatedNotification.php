@@ -12,12 +12,13 @@ class ExpenseUpdatedNotification extends Notification
 {
     use Queueable;
 
+    protected $expense;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    protected $expense;
     public function __construct(Expenses $expense)
     {
         $this->expense = $expense;

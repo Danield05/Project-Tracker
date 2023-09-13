@@ -7,17 +7,18 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 use App\Models\Expenses;
+
 class ExpenseDeletedNotification extends Notification
 {
     use Queueable;
+
+    protected $expense;
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-
-     protected $expense;
     public function __construct(Expenses $expense)
     {
         $this->expense = $expense;
@@ -41,16 +42,20 @@ class ExpenseDeletedNotification extends Notification
      * @return \Illuminate\Notifications\Messages\MailMessage
      */
     public function toMail($notifiable)
-    {       $expense = $this->expense;
-           return (new MailMessage)
-           ->line('Expense Deleted')
-           ->line('Type: ' . $expense->type)
-           ->line('Date: ' . $expense->date)
-           ->line('Description: ' . $expense->description)
-           ->line('Amount: ' . $expense->amount)
-           ->line('Status: ' . $expense->status)
-           ->line('The expense has been marked as Inactive.')
-           ->line('Thank you for using our application!');
+    {
+        $expense = $this->expense;
+        
+        return (new MailMessage)
+            ->line('Expense Deleted')
+            ->line('Type: ' . $expense->type)
+            ->line('Date: ' . $expense->date)
+            ->line('Description: ' . $expense->description)
+            ->line('Amount: ' . $expense->amount)
+            ->line('Status: ' . $expense->status)
+            ->line('The expense has been marked as Inactive.')
+            ->line('Thank you for using our application!')
+            ->from('noreply@yourapp.com', 'Expenses tracker app')
+            ->subject('Expense Deleted');
     }
 
     /**
