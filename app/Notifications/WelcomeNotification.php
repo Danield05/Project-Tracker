@@ -43,7 +43,9 @@ class WelcomeNotification extends Notification
         return (new MailMessage)
             ->line('Welcome to Expenses Tracker')
             ->line('Thank you for joining us')
-            ->line('You can now start adding your expenses');
+            ->line('You can now start adding your expenses')
+            ->from('noreply@gmail.com', 'Expenses tracker app') // Cambia 'yourapp.com' al dominio de tu aplicación
+            ->subject('New User');
     }
 
     /**

@@ -1,0 +1,27 @@
+body {
+    background: url(../img/Blur1.jpg);
+    background-size: cover;
+}
+
+h2 {
+    font-size: 40px;
+    margin-top: 10rem;
+    color: white;
+}
+
+.container form {
+    background: #1c1d1d;
+}
+
+label {
+    color: white;
+}
+
+.btn.btn-primary {
+    background: #1f8575;
+    border: none;
+}
+
+.text-primary {
+    color: white !important;
+}

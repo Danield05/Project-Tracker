@@ -1,7 +1,7 @@
 @extends('layouts.auth-master')
 
 @section('content')
-
+    <link rel="stylesheet" href="{{ asset('css/auth.css') }}">
     <form action="/register" method="POST">
     @csrf
     <h1>Create Account</h1>

@@ -10,6 +10,7 @@ use App\Models\Expenses;
 use App\Models\Budget;
 use App\Notifications\ExpenseDeletedNotification;
 use App\Notifications\ExpenseUpdatedNotification;
+use App\Notifications\UpdateBudget;
 
 class ExpensesController extends Controller
 {
@@ -28,7 +29,7 @@ class ExpensesController extends Controller
         $expense->date = $request->input('date');
         $expense->description = $request->input('description');
         $expense->amount = $request->input('amount');
-        $expense->status = 'Activo';
+        $expense->status = 'Active';
         
         $expense->save();
         // Relaciona el gasto con el usuario que lo creó
@@ -50,11 +51,11 @@ class ExpensesController extends Controller
         $mesActual_budget = now()->format('F');
         
         $expenses = Expenses::where('username', $username)
-            ->where('status', 'Activo')
+            ->where('status', 'Active')
             ->get();
     
         $expenses_current_month = Expenses::where('username', $username)
-            ->where('status', 'Activo')
+            ->where('status', 'Active')
             ->whereRaw('MONTH(date) = ? AND YEAR(date) = ?', [$mesActual, $anoActual])
             ->get();
     
@@ -101,7 +102,7 @@ public function update(Request $request, string $id)
 public function updateStatus($id) //funcion para "eliminar" un expense
 {
     $expense = Expenses::findOrFail($id); 
-    $expense->status = 'Inactivo'; // Cambiar el estado a "Inactivo"
+    $expense->status = 'Inactive'; // Cambiar el estado a "Inactivo"
     $expense->save();
    
     $expense->user()->associate(auth()->user()); // Asume que el usuario está autenticado
@@ -153,6 +154,10 @@ public function updateBudget(Request $request, string $id)
    
     $budget = Budget::findOrFail($id);
     $budget->update($request->all());
+
+    $budget->user()->associate(auth()->user()); // Asume que el usuario está autenticado
+    // Envía la notificación de actualización
+    $budget->user->notify(new UpdateBudget($budget));
     return redirect('/budget')->with('success', 'Budget updated successfully.');;
    
 }
@@ -181,22 +186,22 @@ public function showAnalytics()
     
 
     $total_expenses = Expenses::where('username', $username)
-    ->where('status', 'Activo')
+    ->where('status', 'Active')
     ->get();
     
     $expenses_current_month = Expenses::where('username', $username)
-        ->where('status', 'Activo')
+        ->where('status', 'Active')
         ->whereRaw('MONTH(date) = ? AND YEAR(date) = ?', [$mesActual, $anoActual])
         ->get();
 
     $expenses_previous_month = Expenses::where('username', $username)
-        ->where('status', 'Activo')
+        ->where('status', 'Active')
         ->whereRaw('MONTH(date) = ? AND YEAR(date) = ?', [$mesAnterior, $anoAnterior])
         ->get();
 
 
      $expenses_trend = Expenses::where('username', $username)
-        ->where('status', 'Activo')
+        ->where('status', 'Active')
         ->selectRaw('DATE_FORMAT(date, "%Y-%m-%d") as date, SUM(amount) as total')
         ->groupBy('date')
         ->get();

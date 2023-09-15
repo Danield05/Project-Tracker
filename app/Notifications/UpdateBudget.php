@@ -6,22 +6,19 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
-use App\Models\Expenses;
-
-class ExpenseDeletedNotification extends Notification
+use App\Models\Budget;
+class UpdateBudget extends Notification
 {
     use Queueable;
-
-    protected $expense;
-
+    protected $budget;
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct(Expenses $expense)
+    public function __construct(Budget $budget)
     {
-        $this->expense = $expense;
+        $this->budget = $budget;
     }
 
     /**
@@ -43,19 +40,18 @@ class ExpenseDeletedNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $expense = $this->expense;
+     
+        $budget = $this->budget; 
         
         return (new MailMessage)
-            ->line('Expense Inactive')
-            ->line('Type: ' . $expense->type)
-            ->line('Date: ' . $expense->date)
-            ->line('Description: ' . $expense->description)
-            ->line('Amount: ' . $expense->amount)
-            ->line('Status: ' . $expense->status)
-            ->line('The expense has been marked as Inactive.')
-            ->line('Thank you for using our application!')
-            ->from('noreply@yourapp.com', 'Expenses tracker app')
-            ->subject('Expense Inactive');
+        ->line('Edit Monthly Budget') 
+        ->line('Month: ' . $budget->month) 
+        ->line('Year: ' . $budget->year) 
+        ->line('Budget Amount: ' . $budget->budget) 
+        ->line('The budget has been updated.')
+        ->line('Thank you for using our application!')
+        ->from('noreply@yourapp.com', 'Expenses tracker app')
+        ->subject('Update Monthly Budget');
     }
 
     /**

@@ -52,7 +52,10 @@ class ExpenseUpdatedNotification extends Notification
             ->line('Amount: ' . $expense->amount)
             ->line('Status: ' . $expense->status)
             ->line('The expense has been updated.')
-            ->line('Thank you for using our application!');
+            ->line('Thank you for using our application!')
+            ->from('noreply@gmail.com', 'Expenses tracker app') // Cambia 'yourapp.com' al dominio de tu aplicación
+            ->subject('Updated Expense');
+            
     }
 
     /**

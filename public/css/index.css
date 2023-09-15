@@ -1,0 +1,33 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url(../img/Blur1.jpg);
+    background-size: cover;
+}
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 300%;
+}
+.container .text-center.mt-5 {
+    display: flex;
+    flex-direction: column;
+    background: #1c1d1d;
+    height: 250px;
+    width: 700px;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 10rem;
+    font-size: 20px;
+    border: 2px;
+}
+
+p {
+    color: white;
+}

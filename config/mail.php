@@ -40,7 +40,7 @@ return [
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
             'username' => env('MAIL_USERNAME', 'trackerexpense973@gmail.com'),
-            'password' => env('MAIL_PASSWORD', 'mzzzvvmpdzsplqhj'),
+            'password' => env('MAIL_PASSWORD', 'dnjddxlqcrzlceeu'),
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
@@ -92,7 +92,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'noreply@example.com'),
         'name' => env('MAIL_FROM_NAME', 'Expense Tracker'),
     ],
 

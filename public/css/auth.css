@@ -1,0 +1,14 @@
+body {
+    background: url(../img/Blur1.jpg);
+    background-size: cover;
+}
+
+body h1 {
+    font-size: 40px;
+    margin-top: 10rem;
+    color: white;
+}
+
+.form-floating.mb-3 .form-text {
+    color: white;
+}

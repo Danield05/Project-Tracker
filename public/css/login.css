@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.form-container {
+    width: 100%;
+    height: 100%;
+    background: url(../img/MainImage.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+.form-container form {
+    background: url(../img/Blur1.jpg);
+    background-size: cover;
+    padding: 3rem;
+    border-radius: 0.5rem;
+    width: 100%;
+    max-width: 600px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-container .mb-3 a {
+    color: #30af9c;
+}
+
+.form-container .title {
+    position: absolute;
+    right: 2rem;
+    top: 2rem;
+    color: white;
+    font-weight: bold;
+    font-size: 48px;
+}
+
+.form-container form div {
+    width: 100%;
+}
+
+.form-container h2 {
+    margin-bottom: 3rem;
+    width: 100%;
+    color: white;
+}
+
+.form-container label {
+    color: #fff;
+    font-size: 17px;
+}
+
+.form-container #emailHelp {
+    color: white;
+}
+
+.form-container a {
+    color: white;
+}
+
+.form-container .login-btn {
+    background: #30af9c !important;
+    border-color: #319b8b !important;
+    width: 100%;
+}
+
+.form-container .login-btn:active {
+    background: #319b8b !important;
+    border-color: #319b8b !important;
+}

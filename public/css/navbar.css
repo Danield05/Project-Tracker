@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*body {
+    background: #1c1d1d;
+}*/
+.container-fluid {
+    background: #30af9c;
+    height: 80px;
+}
+.container-fluid .navbar-brand {
+    font-size: 28px;
+    color: white;
+}
+
+.nav-item .nav-link.active {
+    font-size: 20px;
+    color: #1c1d1d;
+}
+
+.nav-item.dropdown .nav-link.dropdown-toggle {
+    font-size: 20px;
+    color: #1c1d1d;
+}
+
+.navbar.navbar-expand-lg.bg-body-tertiary {
+    padding: 0;
+}
+
+.submit {
+    background: #1f8575;
+    height: 37px;
+    border-radius: 5px;
+}

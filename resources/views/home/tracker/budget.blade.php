@@ -1,8 +1,10 @@
 @extends('layouts.app-master')
 
 @section('content')
-<h2>Enter Monthly Budget</h2>
-<form class="border border-white p-3" action="{{ url('/budget') }}" method="POST">
+<link rel="stylesheet" href="{{ asset('css/monthly.css') }}">
+<div class="container">
+  <h2>Enter Monthly Budget</h2>
+  <form class="p-3" action="{{ url('/budget') }}" method="POST">
   @csrf
   
   <div class="mb-3 row">
@@ -54,6 +56,7 @@
     </div>
   </div>
 </form>
+</div>
 @if(session('success'))
     <div id="success-message" class="alert alert-success">
         {{ session('success') }}

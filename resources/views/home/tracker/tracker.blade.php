@@ -1,4 +1,5 @@
 @extends('layouts.app-master')
+<link rel="stylesheet" href="{{ asset('css/register.css') }}">
 
 @section('content')
 <h2>Register Expense</h2>

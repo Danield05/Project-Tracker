@@ -1,6 +1,8 @@
 @extends('layouts.app-master')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/expenses.css') }}">
+
 <h1>Analytics</h1>
 
 <div class="row mt-5">
