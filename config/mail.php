@@ -39,8 +39,8 @@ return [
             'host' => env('MAIL_HOST', 'smtp.gmail.com'),
             'port' => env('MAIL_PORT', 587),
             'encryption' => env('MAIL_ENCRYPTION', 'tls'),
-            'username' => env('MAIL_USERNAME', 'trackerexpense973@gmail.com'),
-            'password' => env('MAIL_PASSWORD', 'dnjddxlqcrzlceeu'),
+            'username' => env('MAIL_USERNAME', 'your acount'),//Agrega tu correo de gmail ejemplo example12@gmail.com
+            'password' => env('MAIL_PASSWORD', 'your password'),//Agrega tu contraseña de gmail ejemplo 123456789
             'timeout' => null,
             'local_domain' => env('MAIL_EHLO_DOMAIN'),
         ],
